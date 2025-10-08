@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/ptw-logo.png" type="image/png">
+    <title>Administor - โรงเรียนไพฑูรย์วิทยา</title>
+    
+    <!-- Google Fonts - Noto Sans Thai + Noto Serif Thai -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="./output.css" rel="stylesheet">
+    
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Alpine Plugins -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+ 
+    <!-- Alpine Core -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom Script -->
+    <script src="./main.js"></script>
+
+    <style>
+        .gold1 {
+            color: #fdc970;
+        }
+    </style>
+
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+</head>
+
+<body class="font-thai-sans">
+    <!-- Header Placeholder -->
+    <header id="header-placeholder"></header>
+
+    <main class="pt-12">
+        <!-- Director Team -->
+         <section id="directors" class="max-w-full mx-auto px-4 py-16 bg-orange-400/20" x-data="directorData()">
+            <div class="max-w-5xl mx-auto px-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-thai-serif font-medium text-amber-600 drop-shadow-sm mb-4">คณะผู้บริหาร</h2>
+                    <div class="w-24 h-1 bg-orange-300 mx-auto"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2x md:grid-cols-3 h-fit gap-4 px-12 md:px-0 text-teal-700 max-w-4xl mx-auto">
+                <template x-for="(director, index) in directors" :key="index">
+                    <div x-data="{}" x-intersect="setTimeout(() => $el.classList.add('fade-in-up'), index * 100)" class="text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                        <div class="overflow-hidden bg-white text-center p-2">
+                            <img :src="director.image" :alt="director.title" class="h-[300px] md:h-[280px] w-full object-center object-cover rounded-sm overflow-hidden">
+                            <h3 class="text-lg font-bold py-1.5" x-text="director.description"></h3>
+                            <p class="text-lime-600" x-text="director.title"></p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- Teacher Team -->
+        <section id="activities" class="max-w-full mx-auto py-10 bg-amber-500/30" x-data="presidentData()">
+            <div class="max-w-5xl mx-auto px-8 pb-8">
+                <div class="text-center mb-6">
+                    <h2 class="text-3xl md:text-4xl font-thai-serif font-medium text-amber-600 drop-shadow-sm mb-4">คณะครูประถมศึกษา</h2>
+                    <div class="w-24 h-1 bg-orange-300 mx-auto"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 px-4 max-w-5xl mx-auto">
+                <template x-for="(activity, index) in activities" :key="index">
+                    <div class="w-full text-amber-900">
+                        <div x-data="{}" x-intersect="setTimeout(() => $el.classList.add('fade-in-up'), index * 100)" class="text-center overflow-hidden rounded-xl flex flex-col items-center px-2 border-4 border-white">
+                            <img :src="activity.image" :alt="activity.title" class="h-56 w-full overflow-hidden object-cover object-center scale-125 hover:scale-110 transition-all duration-700">
+                        </div>
+                        <div class="text-center z-10 py-2 flex-1 mx-auto w-full p-2">
+                            <p class="font-normal text-lg mx-auto" x-text="activity.description"></p>
+                            <h3 class="text-base font-lightl" x-text="activity.title"></h3>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+        <!-- Kids-Team -->
+        <section id="kids" class="max-w-full mx-auto px-0 mt-0 md:px-10 py-10 bg-yellow-400/20" x-data="kidsData()">
+            <div class="max-w-5xl mx-auto px-8">
+                <div class="text-center mt-0">
+                    <h2 class="text-3xl md:text-4xl font-thai-serif font-medium text-amber-600 drop-shadow-sm mb-4">คณะครูปฐมวัย</h2>
+                    <div class="w-24 h-1 bg-orange-300 mx-auto"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 gap-4 px-4 pt-12 max-w-5xl mx-auto">
+                <template x-for="(kid, index) in kids" :key="index">
+                    <div class="w-full bg-red-400/0">
+                        <div x-data="{}" x-intersect="setTimeout(() => $el.classList.add('fade-in-up'), index * 100)" class="text-center overflow-hidden rounded-xl flex flex-col items-center px-2 border-4 border-white">
+                            <img :src="kid.image" :alt="kid.title" class="h-56 w-full overflow-hidden object-cover object-center scale-125 hover:scale-110 transition-all duration-700">
+                        </div>
+                        <div class="text-center z-10 py-2 flex-1 mx-auto w-full p-2 text-lime-900">
+                            <p class="font-normal text-lg mx-auto" x-text="kid.description"></p>
+                            <h3 class="text-base font-lightl" x-text="kid.title"></h3>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer Placeholder -->
+    <footer id="footer-placeholder"></footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        function directorData() {
+        return {
+            directors: [
+                { title: 'ผู้อำนวยการ', description: 'รศ.ดร.ผกา อินทะจำรัส', image: './assets/webp/director-001.webp' },
+                { title: 'รองผู้อำนวยการ', description: 'ดร.วิไลวรรณ ถาวรธนารักษ์', image: './assets/webp/teacher-007.webp' },
+                { title: 'ผู้จัดการ', description: 'อ.สมบัติ พูนสุข', image: './assets/webp/director-002.webp' },
+            ]
+        }
+    }
+
+        function presidentData() {
+        return {
+            activities: [
+                { title: 'ฝ่ายวิชาการ', description: 'สมชาย ใจดี', image: './assets/webp/director-004.webp' },
+                { title: 'ฝ่ายกิจการนักเรียน', description: 'ครูสุภาพร ศรีสุข', image: './assets/webp/teacher-001.webp' },
+                { title: 'ฝ่ายบุคลากร', description: 'ประเสริฐ แก้วใส', image: './assets/webp/teacher-004.webp' },
+                { title: 'ฝ่ายการเงิน', description: 'วรรณา ทองดี', image: './assets/webp/teacher-007.webp' },
+                { title: 'ฝ่ายอาคารสถานที่', description: 'สมบัติ พูนสุข', image: './assets/webp/teacher-005.webp' },
+                { title: 'ฝ่ายอาคารสถานที่', description: 'สมบัติ พูนสุข', image: './assets/webp/director-002.webp' },
+            ]
+        }
+    }
+        function kidsData() {
+        return {
+            kids: [
+                { title: 'ผู้อำนวยการฝ่ายปฐมวัย', description: 'สายฝน รัตนกุล', image: './assets/webp/teacher-002.webp' },
+                { title: 'ฝ่ายวิชาการ', description: 'ณรงค์ชัย อินทร', image: './assets/webp/teacher-011.webp' },
+                { title: 'ฝ่ายประเมิน', description: 'จิราภรณ์ ศิริสุข', image: './assets/webp/teacher-008.webp' },
+                { title: 'ฝ่ายกิจกรรม', description: 'จิราภรณ์ ศิริสุข', image: './assets/webp/teacher-012.webp' },
+            ]
+        }
+    } 
+    </script>
+
+</body>
+
+</html>
